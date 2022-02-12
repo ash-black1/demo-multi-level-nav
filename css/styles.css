@@ -1,1 +1,42 @@
 /* developer styles go here */
+body {
+    font-family: sans-serif;
+}
+
+header {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+/* Step 1. style everything for the smallest screen first */
+/* when styling the text, style the anchor tag directly to overwrite the browser styling. Layout styling goes on the li element */
+
+ul.menu {
+    background-color: rgb(31, 30, 30);
+}
+
+ul.menu a {
+    color: aquamarine;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1rem;
+    /* expand the clickable area, to fill the whole li element */
+    display: block;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+ul.menu a:hover,
+ul.menu a:active {
+    background-color: #262626;
+    border-radius: 4px;
+}
+
+/* style the top level menu to look different than the sub-menu */
+ul.sub-menu > li a {
+    text-decoration: none;
+}
+
+ul.sub-menu {
+    padding: 0 1.25rem;
+}
