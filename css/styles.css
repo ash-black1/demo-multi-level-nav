@@ -8,6 +8,10 @@ header {
     margin: 0 auto;
 }
 
+h1 {
+    margin-left: 1rem;
+}
+
 /* Step 1. style everything for the smallest screen first */
 /* when styling the text, style the anchor tag directly to overwrite the browser styling. Layout styling goes on the li element */
 
@@ -28,7 +32,7 @@ ul.menu a {
 
 ul.menu a:hover,
 ul.menu a:active {
-    background-color: #262626;
+    background-color: #2b2a2a;
     border-radius: 4px;
 }
 
@@ -39,4 +43,84 @@ ul.sub-menu > li a {
 
 ul.sub-menu {
     padding: 0 1.25rem;
+}
+
+svg {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+}
+
+@media screen and (min-width: 60rem) {
+    ul.menu {
+        display: flex;
+    }
+
+    ul.menu li {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: auto;
+        text-align: center;
+    }
+
+    /* Step 2. Postition and style the dropdown menu and then hide it */
+    
+    ul.sub-menu {
+        padding: 0;
+        /* When using position absolute, the element is removed from the layout of the document - the space it took up is now gone */
+        position: absolute;
+        top: 56px;
+        left: -25%;
+        background-color: rgb(31, 30, 30);
+        border-radius: 0 0 5px 5px;
+        /* Hide the submenu, and also make it accessible to screen readers and keyboards **display: none; is NOT a good way of doing this** */
+        visibility: hidden;
+        opacity: 0;
+        /* Step 4. Add transition state. When adding a transition state, add it to the element that is changing BEFORE it changes */
+        transition: all 0.5s ease;
+    }
+
+    /* When positiong an absolute item, make the parent element position relitive in relation to it and not the viewport - which is default */
+    ul.menu li {
+        position: relative;
+        white-space: nowrap;
+    }
+
+    /* Step 3. Add hover states and show the submenus */
+
+    ul.menu li:hover > ul {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ul.menu a:hover,
+    ul.menu a:active {
+        background-color: #2b2a2a;
+        border-radius: 4px;
+        color: deeppink;
+    }
+
+    /* Step 5. Add accessibility using the :focus-within state - use on the li elements */
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul:focus {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
+
+    svg path,
+    svg rect {
+        fill: aquamarine;
+    }
+
+    ul.menu a:hover path,
+    ul.menu a:hover rect {
+        fill: deeppink;
+    }
+
+    svg {
+        width: .75rem;
+        visibility: visible;
+        opacity: 1;
+    }
 }
